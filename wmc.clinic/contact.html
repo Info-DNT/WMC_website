@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from wmc.clinic/contact by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Apr 2026 09:14:21 GMT -->
+<head>
+  <meta charset="utf-8">
+  <title>Contact WMC – Worldwide Medical Center in Dubai | Book Appointment</title>
+
+  <meta name="description"
+    content="Contact WMC – Worldwide Medical Center in Dubai to book appointments for laser hair removal, body sculpting, cosmetic treatments, and medical services. Speak with our expert medical team today.">
+
+  <meta name="keywords"
+    content="Contact Medical Center in Dubai, Book Doctor Appointment Dubai, Laser Hair Removal Clinic Dubai Contact, Aesthetic Clinic Dubai Contact, Medical Treatment Dubai">
+
+  <link rel="canonical" href="https://www.wmcclinic.ae/contact.html">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+  <!-- Favicon -->
+    <link href="img/favicon.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;700&amp;family=Work+Sans:wght@400;600&amp;display=swap"
+    rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+  <link href="../cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header Start -->
+  <div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-lg-5">
+      <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+        <img src="img/wmc-logo.png" alt="Worldwide Medical Center" class="navbar-logo" /></a>
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mx-auto p-4 p-lg-0">
+          <a href="index.html" class="nav-item nav-link">Home</a>
+          <a href="about.html" class="nav-item nav-link">About</a>
+          <a href="service.html" class="nav-item nav-link active">Services</a>
+         
+          <a href="join-us.html" class="nav-item nav-link">Join as a Partner</a>
+        </div>
+        <div class="d-none d-lg-flex">
+          <a class="btn btn-outline-primary border-2" href="contact.html">Book an Appointment</a>
+        </div>
+      </div>
+    </nav>
+    <div class="page-header pb-5">
+      <div class="container text-center py-5">
+        <h1 class="display-4 text-uppercase mb-3 animated slideInDown">
+          Contact Worldwide Medical Center in Dubai
+        </h1>
+
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+  <section class="container py-5">
+    <div class="text-center mb-4">
+      <h2>Get in Touch with Our Medical Specialists</h2>
+    </div>
+
+    <p class="text-center">
+      WMC – Worldwide Medical Center is a trusted medical and aesthetic clinic in Dubai.
+      Contact us today to book an appointment for laser hair removal, body sculpting,
+      cosmetic treatments, or expert medical consultations.
+    </p>
+  </section>
+
+
+<!-- Contact Form (centered & responsive) -->
+<section class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <form id="contactForm">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+          </div>
+
+          <!-- PHONE -->
+          <div class="col-12 col-md-6">
+            <div class="input-group">
+              <input type="text" id="countryCode" class="form-control" style="max-width:90px" readonly>
+              <input type="tel" id="phone" class="form-control" placeholder="Phone Number" required>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <select id="service" class="form-control" required>
+              <option value="">Select Service</option>
+              <option>Aesthetic Treatments</option>
+              <option>General Practitioner</option>
+              <option>Pediatrics</option>
+              <option>Urology Services</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <textarea id="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+
+          <!-- Hidden combined phone -->
+          <input type="hidden" id="full_phone">
+
+          <div class="col-12 d-grid">
+            <button type="submit" class="btn btn-outline-primary py-3">
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* =========================
+   AUTO COUNTRY CODE (IP)
+========================= */
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("countryCode").value =
+      data.country_calling_code || "+971";
+  })
+  .catch(() => {
+    document.getElementById("countryCode").value = "+971";
+  });
+
+/* =========================
+   SUPABASE + FORM SUBMIT
+========================= */
+window.addEventListener("load", function () {
+
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const supabase = window.supabase.createClient(
+    "https://gppgbnujpdcudqovsjyo.supabase.co/",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwcGdibnVqcGRjdWRxb3ZzanlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzIwNTksImV4cCI6MjA4MzYwODA1OX0.H9Z13wmdb1gN6Z6dit3jnoadFxQ1DSyIRv1PoWVA9h0"
+  );
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // 🚨 CRITICAL
+
+    const fullPhone =
+      document.getElementById("countryCode").value +
+      document.getElementById("phone").value;
+
+    const payload = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: fullPhone,
+      service: document.getElementById("service").value,
+      message: document.getElementById("message").value.trim()
+    };
+
+    console.log("📦 Sending:", payload);
+
+    const { error } = await supabase
+      .from("contact_leads")
+      .insert([payload]);
+
+    if (error) {
+      console.error(error);
+      alert("❌ Submission failed");
+      return;
+    }
+
+    alert("✅ Appointment booked successfully!");
+    form.reset();
+  });
+
+});
+</script>
+
+
+
+
+
+
+  <!-- Google Map Start -->
+  <div class="container-fluid p-0 wow fadeIn mt-5" data-wow-delay="0.3s">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3608.9093275903438!2d55.34407047538313!3d25.23997877768339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDE0JzIzLjkiTiA1NcKwMjAnNDcuOSJF!5e0!3m2!1sen!2sin!4v1768043362955!5m2!1sen!2sin"
+      style="
+      width: 100%;
+      height: 500px;
+      border: 0;
+    " allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <!-- Google Map End -->
+
+
+  <section class="container py-5">
+    <h2 class="text-center mb-5">Contact & Appointment FAQs</h2>
+
+    <div class="accordion" id="contactFAQ">
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#cfaq1">
+            How can I book an appointment at WMC?
+          </button>
+        </h3>
+        <div id="cfaq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            You can book an appointment at WMC by filling out the contact form,
+            calling our clinic, or emailing our team. Our staff will assist you promptly.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cfaq2">
+            Where is WMC located in Dubai?
+          </button>
+        </h3>
+        <div id="cfaq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Worldwide Medical Center is located in Dubai, UAE.
+            Our clinic is easily accessible for patients across the city.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cfaq3">
+            How soon will I be contacted after submitting the form?
+          </button>
+        </h3>
+        <div id="cfaq3" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Our team usually responds within 24 hours to confirm your appointment
+            or answer your questions.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I book an appointment at WMC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book an appointment at WMC by filling out the contact form, calling the clinic, or emailing the medical team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is WMC located in Dubai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WMC – Worldwide Medical Center is located in Dubai, United Arab Emirates and is easily accessible for patients."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly does WMC respond to contact requests?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WMC typically responds within 24 hours after receiving a contact or appointment request."
+      }
+    }
+  ]
+}
+</script>
+
+
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer py-3 py-lg-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-3 py-lg-5">
+      <div class="row g-3 g-lg-5">
+
+        <!-- Logo and Description -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-logo mb-4">
+            <img src="img/wmc-logo.png" alt="WMC Logo" style="height: 50px; width: auto;">
+          </div>
+          <p class="text-light mb-4" style="font-size: 0.9rem; line-height: 1.6;">
+            Providing world-class healthcare with a patient-centered approach. Our expert specialists and advanced
+            technology ensure you receive the best care possible.
+          </p>
+                  <div class="d-flex">
+            <a class="btn btn-outline-primary border-2 btn-sm-square me-2" href="https://www.facebook.com/profile.php?id=61584357911204">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="btn btn-outline-primary border-2 btn-sm-square me-2" href="https://x.com/WMC1939212">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class="btn btn-outline-primary border-2 btn-sm-square me-2" href="https://www.instagram.com/wmc.clinic/">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a class="btn btn-outline-primary border-2 btn-sm-square" href="https://www.linkedin.com/company/www.wmc.clinic/">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6">
+          <h5 class="text-primary mb-4">Quick Links</h5>
+          <a class="btn btn-link text-light" href="index.html">Home</a>
+          <a class="btn btn-link text-light" href="about.html">About Us</a>
+          <a class="btn btn-link text-light" href="service.html">Services</a>
+          <a class="btn btn-link text-light" href="join-us.html">Careers</a>
+          <a class="btn btn-link text-light" href="contact.html">Contact</a>
+        </div>
+
+        <!-- Our Services -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-primary mb-4">Our Services</h5>
+          <a class="btn btn-link text-light" href="service.html">Aesthetic Treatments</a>
+          <a class="btn btn-link text-light" href="service.html">General Practitioner</a>
+          <a class="btn btn-link text-light" href="service.html">Pediatrics</a>
+          <a class="btn btn-link text-light" href="service.html">Urology</a>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="text-primary mb-4">Contact Us</h5>
+          <div class="mb-2 d-flex align-items-start">
+            <i class="fa fa-map-marker-alt text-primary me-2 mt-1" style="flex-shrink: 0;"></i>
+            <span>WMC Polyclinic LLC<br>310, 3rd Floor, Garhoud Community, Dubai Autism Center, Al Garhoud, Dubai (U.A.E.)</span>
+          </div>
+          <p class="mb-2">
+            <i class="fa fa-phone-alt text-primary me-2"></i>
+            <a href="tel:+97143230261" class="text-light">+971 4 570 7960</a>
+          </p>
+          <p class="mb-2">
+            <i class="fa fa-envelope text-primary me-2"></i>
+            <a href="mailto:info@wmc.clinic" class="text-light">info@wmc.clinic</a>
+          </p>
+          <p class="mb-0">
+            <i class="fa fa-clock text-primary me-2"></i>
+            Mon - Sun: 8am to 10pm
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="container">
+      <div class="copyright py-2 py-lg-3">
+        <div class="row">
+          <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
+            <p class="mb-0 fs-6">&copy; 2026 WMC Polyclinic LLC</p>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-end">
+            <a href="privacy-policy.html" class="text-light me-2 me-md-3 text-decoration-none fs-6">Privacy Policy</a>
+            <a href="#!" class="text-light text-decoration-none fs-6">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-outline-primary border-2 btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="../code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../cdn.jsdelivr.net/npm/bootstrap%405.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from wmc.clinic/contact by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Apr 2026 09:14:21 GMT -->
+</html>
