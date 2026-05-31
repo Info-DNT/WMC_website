@@ -283,10 +283,13 @@
                 <div class="col-12 col-md-6">
                   <select id="service" class="form-control" required>
                     <option value="">Select Service</option>
-                    <option>Aesthetic Treatments</option>
-                    <option>General Practitioner</option>
-                    <option>Pediatrics</option>
-                    <option>Urology Services</option>
+                    <option value="General Practitioner (GP)">General Practitioner (GP)</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="IV Therapy & Wellness">IV Therapy & Wellness</option>
+                    <option value="Laboratory Services">Laboratory Services</option>
+                    <option value="Dermatology / Medical Aesthetic Treatments">Dermatology / Medical Aesthetic Treatments</option>
+                    <option value="Urology Services">Urology Services</option>
+                    <option value="Radiology">Radiology</option>
                   </select>
                 </div>
 
@@ -298,7 +301,7 @@
                 <input type="hidden" id="full_phone">
 
                 <div class="col-12 d-grid">
-                  <button type="submit" class="btn btn-outline-primary py-3">
+                  <button type="submit" id="submitBtn" class="btn btn-outline-primary py-3">
                     Book Appointment
                   </button>
                 </div>
@@ -308,12 +311,11 @@
       </div>
       </section>
 
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+      <!-- Google Sheets Integration -->
       <script>
         /* =========================
            AUTO COUNTRY CODE (IP)
-        ========================= */
+         ========================= */
         fetch("https://ipapi.co/json/")
           .then(res => res.json())
           .then(data => {
@@ -325,35 +327,44 @@
           });
 
         /* =========================
-           SUPABASE + FORM SUBMIT
-        ========================= */
-        const supabaseUrl = 'https://gppgbnujpdcudqovsjyo.supabase.co'
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwcGdibnVqcGRjdWRxb3ZzanlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzIwNTksImV4cCI6MjA4MzYwODA1OX0.H9Z13wmdb1gN6Z6dit3jnoadFxQ1DSyIRv1PoWVA9h0'
-
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+           GOOGLE SHEETS FORM SUBMIT
+         ========================= */
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw7hhHrQ85LQU3XPgTllvh2LGWVmg6KDqWzi8C2BeBSVcLUJKpahSK29E7vD-9YTF2Qhg/exec'
 
         async function submitForm(event) {
           event.preventDefault()
 
-          const name = document.getElementById('name').value
-          const email = document.getElementById('email').value
+          const btn = document.getElementById('submitBtn')
+          btn.textContent = 'Sending...'
+          btn.disabled = true
+
           const countryCode = document.getElementById('countryCode')?.value || ''
-          const phone = countryCode + document.getElementById('phone').value
-          const service = document.getElementById('service').value
-          const messageEl = document.getElementById('message')
-          const message = messageEl ? messageEl.value : ''
-
-          const { data, error } = await supabase
-            .from('contact_leads')
-            .insert([{ name, email, phone, service, message }])
-
-          if (error) {
-            alert('Something went wrong. Please try again.')
-            console.error(error)
-          } else {
-            alert('Thank you! We will contact you soon.')
-            document.getElementById('contactForm').reset()
+          const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: countryCode + document.getElementById('phone').value,
+            service: document.getElementById('service').value,
+            message: document.getElementById('message').value
           }
+
+          try {
+            await fetch(SHEET_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData)
+            })
+
+            alert('✅ Thank you! We will contact you soon.')
+            document.getElementById('contactForm').reset()
+
+          } catch (error) {
+            alert('❌ Something went wrong. Please try again.')
+            console.error(error)
+          }
+
+          btn.textContent = 'Book Appointment'
+          btn.disabled = false
         }
       </script>
 
