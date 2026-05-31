@@ -44,10 +44,12 @@
     <style>
         .privacy-section {
             margin-bottom: 3rem;
+            font-family: "Work Sans", sans-serif;
         }
 
         .privacy-section h2 {
             color: #D4AF37;
+            font-family: "Josefin Sans", sans-serif;
             font-weight: 700;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
@@ -55,37 +57,98 @@
         }
 
         .privacy-section h3 {
-            color: #333;
+            color: #f8f9fa;
+            font-family: "Josefin Sans", sans-serif;
             font-weight: 600;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             margin-bottom: 1rem;
         }
 
         .privacy-section p {
-            color: #666;
+            color: #d1d1d1;
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
-        .privacy-section ul, 
+        .privacy-section ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .privacy-section ul li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: #d1d1d1;
+            line-height: 1.8;
+        }
+
+        .privacy-section ul li::before {
+            content: "\f00c"; /* FontAwesome check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: #D4AF37;
+            font-size: 0.85rem;
+        }
+
         .privacy-section ol {
-            color: #666;
+            color: #d1d1d1;
             line-height: 1.8;
             margin-bottom: 1.5rem;
-            padding-left: 2rem;
+            padding-left: 1.5rem;
         }
 
-        .privacy-section ul li, 
         .privacy-section ol li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #d1d1d1;
         }
 
         .privacy-intro {
-            background-color: #f8f9fa;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-left: 4px solid #D4AF37;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border-radius: 4px;
+            border-radius: 8px;
+            backdrop-filter: blur(6px);
+        }
+
+        .privacy-intro p {
+            margin-bottom: 0;
+            color: #d1d1d1;
+        }
+
+        .privacy-h4 {
+            color: #D4AF37;
+            font-family: "Josefin Sans", sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .privacy-h4.right-item::before {
+            content: "\f058"; /* FontAwesome check-circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.6rem;
+            color: #D4AF37;
+            font-size: 0.95rem;
+        }
+
+        .privacy-h4.responsibility-item::before {
+            content: "\f0da"; /* FontAwesome caret-right */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.6rem;
+            color: #D4AF37;
+            font-size: 0.95rem;
         }
     </style>
 </head>
@@ -219,37 +282,37 @@
                 <h3>Patient Rights</h3>
                 <p>As a patient at WMC, you have the following rights:</p>
                 
-                <div style="margin-left: 1rem;">
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Respect and Dignity</h4>
+                <div style="margin-left: 0.5rem;">
+                    <h4 class="privacy-h4 right-item">Respect and Dignity</h4>
                     <p>You have the right to be treated with respect, dignity, and compassion by our staff at all times.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Privacy</h4>
+                    <h4 class="privacy-h4 right-item">Privacy</h4>
                     <p>We will protect your privacy and confidentiality according to the guidelines outlined in our Privacy Policy.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Information Access</h4>
+                    <h4 class="privacy-h4 right-item">Information Access</h4>
                     <p>You have the right to access information about your health condition, treatment plan, and involved healthcare providers.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Informed Consent</h4>
+                    <h4 class="privacy-h4 right-item">Informed Consent</h4>
                     <p>You have the right to receive information about your treatment options, potential risks, and expected outcomes to make informed decisions about your care.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Refusal of Treatment</h4>
+                    <h4 class="privacy-h4 right-item">Refusal of Treatment</h4>
                     <p>You have the right to refuse treatment and to be informed of the potential consequences of refusing treatment.</p>
                 </div>
 
                 <h3>Patient Responsibilities</h3>
                 <p>As a patient at WMC, you have the following responsibilities:</p>
                 
-                <div style="margin-left: 1rem;">
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Providing Information</h4>
+                <div style="margin-left: 0.5rem;">
+                    <h4 class="privacy-h4 responsibility-item">Providing Information</h4>
                     <p>It is important to provide accurate and complete information about your medical history, current condition, medications, and allergies.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Following Instructions</h4>
+                    <h4 class="privacy-h4 responsibility-item">Following Instructions</h4>
                     <p>Follow the treatment plan recommended by your healthcare provider and ask questions if you do not understand any aspect of your care.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Respect and Cooperation</h4>
+                    <h4 class="privacy-h4 responsibility-item">Respect and Cooperation</h4>
                     <p>Treat our staff, healthcare providers, and other patients with respect and cooperation.</p>
                     
-                    <h4 style="color: #333; font-weight: 600; font-size: 1rem; margin-top: 1rem;">Payment</h4>
+                    <h4 class="privacy-h4 responsibility-item">Payment</h4>
                     <p>Fulfill financial obligations for services rendered according to our clinic's policies and procedures.</p>
                 </div>
             </div>
@@ -268,10 +331,10 @@
             </div>
 
             <!-- Contact Section -->
-            <div class="privacy-section" style="background-color: #f8f9fa; padding: 2rem; border-radius: 4px; margin-bottom: 0;">
-                <h2 style="border-bottom-color: #D4AF37;">Need More Information?</h2>
+            <div class="privacy-intro" style="margin-bottom: 0;">
+                <h2 style="border-bottom-color: #D4AF37; margin-top: 0;">Need More Information?</h2>
                 <p>If you have any questions or concerns regarding this Privacy Policy or Patient Policy, please contact us:</p>
-                <p><strong>Phone:</strong> <a href="tel:+97145707960" style="color: #D4AF37; text-decoration: none;">+971 4 570 7960</a></p>
+                <p style="margin-top: 1rem;"><strong>Phone:</strong> <a href="tel:+97145707960" style="color: #D4AF37; text-decoration: none;">+971 4 570 7960</a></p>
                 <p><strong>Email:</strong> <a href="mailto:info@wmc.clinic" style="color: #D4AF37; text-decoration: none;">info@wmc.clinic</a></p>
                 <p style="margin-bottom: 0;"><strong>Hours:</strong><br>Mon–Thu & Sat–Sun: 8:00 AM – 10:00 PM<br>Friday: 2:00 PM – 10:00 PM</p>
             </div>
