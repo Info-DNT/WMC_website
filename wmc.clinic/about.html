@@ -245,12 +245,51 @@
                     </div>
                     <p class="fs-6 fs-lg-5 mb-3 mb-lg-5 wow fadeInUp" data-wow-delay="0.2s">Schedule your consultation with our experienced medical specialists and
                     take the first step toward better health and wellbeing.</p>
-                    <div class="position-relative wow fadeInUp" data-wow-delay="0.3s">
-                        <input class="form-control border-0 bg-dark rounded-pill w-100 py-2 py-lg-4 ps-4 pe-5" type="text"
-                            placeholder="Your email or phone number">
-                        <button type="button" class="btn btn-primary py-2 py-lg-3 px-2 px-lg-4 position-absolute top-0 end-0 me-2 fs-6"
-                            style="margin-top: 0.4rem;">Book Now</button>
-                    </div>
+                    <!-- Contact Form (centered & responsive) -->
+                    <section class="container text-start">
+                      <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="row g-3">
+                          <div class="col-12 col-md-6">
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                          </div>
+
+                          <div class="col-12 col-md-6">
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                          </div>
+
+                          <!-- PHONE -->
+                          <div class="col-12 col-md-6">
+                            <div class="input-group">
+                              <input type="text" id="countryCode" class="form-control" style="max-width:90px" readonly>
+                              <input type="tel" id="phone" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-6">
+                            <select id="service" class="form-control" required>
+                              <option value="">Select Service</option>
+                              <option>Aesthetic Treatments</option>
+                              <option>General Practitioner</option>
+                              <option>Pediatrics</option>
+                              <option>Urology Services</option>
+                            </select>
+                          </div>
+
+                          <div class="col-12">
+                            <textarea id="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                          </div>
+
+                          <!-- Hidden combined phone -->
+                          <input type="hidden" id="full_phone">
+
+                          <div class="col-12 d-grid">
+                            <button type="submit" class="btn btn-outline-primary py-3">
+                              Book Appointment
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </section>
                 </div>
             </div>
         </div>
@@ -354,6 +393,55 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-outline-primary border-2 btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+      /* =========================
+         AUTO COUNTRY CODE (IP)
+      ========================= */
+      fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("countryCode").value =
+            data.country_calling_code || "+971";
+        })
+        .catch(() => {
+          document.getElementById("countryCode").value = "+971";
+        });
+
+      /* =========================
+         SUPABASE + FORM SUBMIT
+      ========================= */
+      const supabaseUrl = 'https://gppgbnujpdcudqovsjyo.supabase.co'
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwcGdibnVqcGRjdWRxb3ZzanlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzIwNTksImV4cCI6MjA4MzYwODA1OX0.H9Z13wmdb1gN6Z6dit3jnoadFxQ1DSyIRv1PoWVA9h0'
+
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
+      async function submitForm(event) {
+        event.preventDefault()
+
+        const name = document.getElementById('name').value
+        const email = document.getElementById('email').value
+        const countryCode = document.getElementById('countryCode')?.value || ''
+        const phone = countryCode + document.getElementById('phone').value
+        const service = document.getElementById('service').value
+        const messageEl = document.getElementById('message')
+        const message = messageEl ? messageEl.value : ''
+
+        const { data, error } = await supabase
+          .from('contact_leads')
+          .insert([{ name, email, phone, service, message }])
+
+        if (error) {
+          alert('Something went wrong. Please try again.')
+          console.error(error)
+        } else {
+          alert('Thank you! We will contact you soon.')
+          document.getElementById('contactForm').reset()
+        }
+      }
+    </script>
 
     <!-- JavaScript Libraries -->
     <script src="../code.jquery.com/jquery-3.4.1.min.js"></script>
