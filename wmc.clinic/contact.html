@@ -93,7 +93,7 @@
 <section class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
-      <form id="contactForm">
+      <form id="contactForm" onsubmit="submitForm(event)">
         <div class="row g-3">
           <div class="col-12 col-md-6">
             <input type="text" id="name" class="form-control" placeholder="Your Name" required>
@@ -158,52 +158,35 @@ fetch("https://ipapi.co/json/")
 /* =========================
    SUPABASE + FORM SUBMIT
 ========================= */
-window.addEventListener("load", function () {
+const supabaseUrl = 'https://lgedjkyafshufxhjywhk.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnZWRqa3lhZnNodWZ4aGp5d2hrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTgwNTAsImV4cCI6MjA4NDAzNDA1MH0.RqL0cdmv259m_txWrpIZoFB9vJ40R_vStxxoZz3ICv0'
 
-  const form = document.getElementById("contactForm");
-  if (!form) return;
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
-  const supabase = window.supabase.createClient(
-    "https://gppgbnujpdcudqovsjyo.supabase.co/",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwcGdibnVqcGRjdWRxb3ZzanlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzIwNTksImV4cCI6MjA4MzYwODA1OX0.H9Z13wmdb1gN6Z6dit3jnoadFxQ1DSyIRv1PoWVA9h0"
-  );
+async function submitForm(event) {
+  event.preventDefault()
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // 🚨 CRITICAL
+  const name = document.getElementById('name').value
+  const email = document.getElementById('email').value
+  const countryCode = document.getElementById('countryCode')?.value || ''
+  const phone = countryCode + document.getElementById('phone').value
+  const service = document.getElementById('service').value
+  const messageEl = document.getElementById('message')
+  const message = messageEl ? messageEl.value : ''
 
-    const fullPhone =
-      document.getElementById("countryCode").value +
-      document.getElementById("phone").value;
+  const { data, error } = await supabase
+    .from('contact_leads')
+    .insert([{ name, email, phone, service, message }])
 
-    const payload = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: fullPhone,
-      service: document.getElementById("service").value,
-      message: document.getElementById("message").value.trim()
-    };
-
-    console.log("📦 Sending:", payload);
-
-    const { error } = await supabase
-      .from("contact_leads")
-      .insert([payload]);
-
-    if (error) {
-      console.error(error);
-      alert("❌ Submission failed");
-      return;
-    }
-
-    alert("✅ Appointment booked successfully!");
-    form.reset();
-  });
-
-});
+  if (error) {
+    alert('Something went wrong. Please try again.')
+    console.error(error)
+  } else {
+    alert('Thank you! We will contact you soon.')
+    document.getElementById('contactForm').reset()
+  }
+}
 </script>
-
-
-
 
 
 
