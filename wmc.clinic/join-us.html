@@ -277,23 +277,11 @@
 <script src="../cdn.jsdelivr.net/npm/intl-tel-input%4018.1.1/build/js/intlTelInput.min.js"></script>
 <script src="../cdn.jsdelivr.net/npm/intl-tel-input%4018.1.1/build/js/utils.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
 
   const form = document.getElementById("partnerForm");
   if (!form) return;
-
-  /* =====================
-     SUPABASE
-  ===================== */
-  const supabase = window.supabase.createClient(
-    "https://gppgbnujpdcudqovsjyo.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwcGdibnVqcGRjdWRxb3ZzanlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzIwNTksImV4cCI6MjA4MzYwODA1OX0.H9Z13wmdb1gN6Z6dit3jnoadFxQ1DSyIRv1PoWVA9h0"
-  );
 
   /* =====================
      COUNTRY AUTO-DETECT
@@ -317,8 +305,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   /* =====================
-     SUBMIT
+     GOOGLE SHEETS FORM SUBMIT
   ===================== */
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw7hhHrQ85LQU3XPgTllvh2LGWVmg6KDqWzi8C2BeBSVcLUJKpahSK29E7vD-9YTF2Qhg/exec'
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -327,28 +317,37 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
     const payload = {
       name: document.getElementById("p_name").value.trim(),
       email: document.getElementById("p_email").value.trim(),
       phone: iti.getNumber(),
       service: "Partnership – " + document.getElementById("p_type").value,
-      message: document.getElementById("p_message").value.trim(),
-      source_url: window.location.href
+      message: document.getElementById("p_message").value.trim()
     };
 
-    const { error } = await supabase
-      .from("contact_leads")
-      .insert([payload]);
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-    if (error) {
+      alert("✅ Partnership inquiry submitted successfully!");
+      form.reset();
+      iti.setCountry(country);
+    } catch (error) {
       console.error(error);
       alert("Submission failed");
-      return;
     }
 
-    alert("✅ Partnership inquiry submitted successfully!");
-    form.reset();
-    iti.setCountry(country);
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
   });
 
 });
