@@ -322,19 +322,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    const payload = {
-      name: document.getElementById("p_name").value.trim(),
-      email: document.getElementById("p_email").value.trim(),
-      phone: iti.getNumber(),
-      service: "Partnership – " + document.getElementById("p_type").value,
-      message: document.getElementById("p_message").value.trim()
-    };
+    const name = document.getElementById("p_name").value.trim();
+    const email = document.getElementById("p_email").value.trim();
+    const phone = iti.getNumber();
+    const service = "Partnership – " + document.getElementById("p_type").value;
+    const message = document.getElementById("p_message").value.trim();
+
+    const payload = { name, email, phone, service, message };
+
+    // Construct URL query parameters to support e.parameter in Google Apps Script
+    const params = new URLSearchParams()
+    params.append('name', name)
+    params.append('email', email)
+    params.append('phone', phone)
+    params.append('service', service)
+    params.append('message', message)
+
+    const requestUrl = `${SHEET_URL}?${params.toString()}`
 
     try {
-      await fetch(SHEET_URL, {
+      await fetch(requestUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
 
