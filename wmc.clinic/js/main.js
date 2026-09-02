@@ -42,27 +42,24 @@
     });
 
 
-    // Testimonials carousel
-    $('.testimonial-carousel').owlCarousel({
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        smartSpeed: 800,
-        loop: true,
-        margin: 24,
-        nav: false,
-        dots: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 3
+    // Testimonials carousel – smooth infinite left-to-right loop
+    $(document).ready(function () {
+        $(".testimonial-carousel").owlCarousel({
+            loop: true,
+            margin: 24,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 2500,
+            autoplaySpeed: 1200,
+            autoplayHoverPause: true,
+            smartSpeed: 1200,
+            responsive: {
+                0:   { items: 1 },
+                640: { items: 2 },
+                992: { items: 3 }
             }
-        }
+        });
     });
 
     
