@@ -26,12 +26,14 @@
     });
     
     
-    // Back to top button
+    // Back to top & Floating WhatsApp buttons
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
+            $('.floating-whatsapp').css('display', 'flex').fadeIn('slow');
         } else {
             $('.back-to-top').fadeOut('slow');
+            $('.floating-whatsapp').fadeOut('slow');
         }
     });
     $('.back-to-top').click(function () {
@@ -43,12 +45,24 @@
     // Testimonials carousel
     $('.testimonial-carousel').owlCarousel({
         autoplay: true,
-        smartSpeed: 1000,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        smartSpeed: 800,
         loop: true,
+        margin: 24,
         nav: false,
         dots: true,
-        items: 1,
-        dotsData: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            }
+        }
     });
 
     
