@@ -162,11 +162,12 @@
 }
 
 .navbar .navbar-nav .nav-link {
-    margin-right: 25px;
-    padding: 40px 0;
+    margin-right: 18px;
+    padding: 35px 0;
     color: var(--bs-white);
-    font-size: 17px;
+    font-size: 15px;
     text-transform: uppercase;
+    white-space: nowrap;
     outline: none;
     transition: .5s;
 }
@@ -216,6 +217,26 @@
         section.container > .row > .col-12.col-md-10.col-lg-8 {
             max-width: 820px;
         }
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1299.98px) {
+    .navbar .navbar-nav .nav-link {
+        margin-right: 12px;
+        font-size: 14px;
+        padding: 30px 0;
+    }
+    
+    .navbar .d-none.d-lg-flex .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .navbar .navbar-nav .nav-link {
+        margin-right: 20px;
+        font-size: 15px;
     }
 }
 
