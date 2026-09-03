@@ -1750,3 +1750,50 @@ body.nav-open { overflow: hidden; }
   outline: 2px solid var(--wmc-gold);
   outline-offset: 3px;
 }
+
+
+/* ============================================================
+   HERO CAROUSEL — gradient scrim + consistent band height
+   Replaces the flat rgba(0,0,0,.7) wash that flattened every slide.
+   ============================================================ */
+
+/* vivid in the middle, darkened only under the navbar and behind the
+   headline / buttons where the text sits */
+.carousel-caption {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.22) 30%,
+    rgba(0, 0, 0, 0.30) 55%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+}
+
+/* mild lift to counteract what's left of the scrim */
+#header-carousel .carousel-item img {
+  filter: saturate(1.08) contrast(1.04);
+}
+
+/* desktop: fix the hero height so 3:2 and 4:3 slides don't jump */
+@media (min-width: 769px) {
+  #header-carousel .carousel-item { overflow: hidden; }
+  #header-carousel .carousel-item img {
+    height: clamp(460px, 78vh, 760px);
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* keep caption text readable over the brighter middle band */
+.carousel-caption h1,
+.carousel-caption h4,
+.carousel-caption p {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+.carousel-caption p { color: var(--wmc-text-hi); }
+
+/* make the prev / next controls easier to see */
+#header-carousel .carousel-control-prev,
+#header-carousel .carousel-control-next { opacity: 0.75; }
+#header-carousel .carousel-control-prev:hover,
+#header-carousel .carousel-control-next:hover { opacity: 1; }
