@@ -1869,3 +1869,53 @@ body.nav-open { overflow: hidden; }
   padding: 0.6rem 1.15rem !important;
   font-size: 0.95rem;
 }
+
+
+/* ============================================================
+   Navbar optical centering + bigger testimonial cards
+   ============================================================ */
+
+/* nav links sit left-of-centre because the right CTA cluster is wider
+   than the logo; nudge the link group right so it reads centred */
+@media (min-width: 992px) {
+  .navbar .navbar-nav {
+    position: relative;
+    left: 4.5vw;
+  }
+}
+
+/* ---- testimonials: larger cards, fewer per view, reviewer avatar ---- */
+.testimonial-card {
+  height: auto;
+  min-height: 300px;
+  padding: 1.6rem 1.5rem;
+}
+.testimonial-card .review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  -webkit-line-clamp: 6;
+}
+.testimonial-card .reviewer-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.testimonial-card .reviewer-avatar {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #7D5A00;
+  background: linear-gradient(135deg, #F5E6C8, #E8D5A3);
+  border: 1px solid #C9A84C;
+}
+.testimonial-card .reviewer-meta { min-width: 0; }
+@media (max-width: 575.98px) {
+  .testimonial-card { min-height: 320px; }
+  .testimonial-card .review-text { font-size: 0.9rem; }
+}
