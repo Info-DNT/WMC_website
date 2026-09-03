@@ -1330,3 +1330,240 @@ section p.text-muted {
   color: #fff !important;
   font-size: 0.58rem;
 }
+
+
+/* ============================================================
+   PLAN C — DARK-THEME DEPTH SYSTEM
+   Tokens + surface layering + gradients + grain + motion.
+   Same palette (gold #D4AF37), added elevation and tonal range.
+   ============================================================ */
+
+/* ---- C1: design tokens ------------------------------------ */
+:root {
+  /* surfaces: page is darkest, cards lift above it */
+  --wmc-bg:         #0B0B0C;
+  --wmc-surface-1:  #141417;
+  --wmc-surface-2:  #1C1C21;
+  --wmc-surface-3:  #26262D;
+
+  /* borders */
+  --wmc-border:        rgba(255, 255, 255, 0.07);
+  --wmc-border-strong: rgba(255, 255, 255, 0.12);
+  --wmc-border-gold:   rgba(212, 175, 55, 0.30);
+
+  /* text */
+  --wmc-text-hi: #F6F5F2;
+  --wmc-text:    #C9C7C1;
+  --wmc-text-lo: #9E9B93;
+
+  /* gold ramp */
+  --wmc-gold:      #D4AF37;
+  --wmc-gold-soft: #E8D5A3;
+  --wmc-gold-deep: #B8860B;
+  --wmc-gold-ink:  #1A1200;
+
+  /* gradients */
+  --wmc-grad-gold:     linear-gradient(135deg, #E8D5A3 0%, #D4AF37 45%, #B8860B 100%);
+  --wmc-grad-surface:  linear-gradient(180deg, var(--wmc-surface-2), var(--wmc-surface-1));
+  --wmc-grad-section:  linear-gradient(180deg, var(--wmc-surface-1), var(--wmc-bg));
+  --wmc-grad-hairline: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45), transparent);
+  --wmc-glow:          radial-gradient(1200px 620px at 50% -12%, rgba(212, 175, 55, 0.07), transparent 62%);
+
+  /* elevation */
+  --wmc-shadow-1: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 6px 18px rgba(0, 0, 0, 0.45);
+  --wmc-shadow-2: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 16px 40px rgba(0, 0, 0, 0.55);
+  --wmc-shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.28);
+
+  /* shape + motion */
+  --wmc-radius:    14px;
+  --wmc-radius-sm: 10px;
+  --wmc-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --wmc-dur:  0.25s;
+}
+
+/* ---- C2: page + section surfaces ------------------------- */
+body {
+  background-color: var(--wmc-bg) !important;
+  color: var(--wmc-text) !important;
+  background-image: var(--wmc-glow);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.text-light { color: var(--wmc-text) !important; }
+.text-muted,
+section p.text-muted { color: var(--wmc-text-lo) !important; }
+
+/* alternating full-width bands get real tonal separation */
+.container-fluid.bg-dark { background-color: var(--wmc-bg) !important; }
+
+.container-fluid.bg-secondary {
+  background-color: var(--wmc-surface-1) !important;
+  background-image: var(--wmc-grad-section);
+}
+
+/* gradient hairline instead of a hard 1px border between bands */
+.container-fluid.border-top.border-secondary {
+  position: relative;
+  border-top-color: transparent !important;
+}
+.container-fluid.border-top.border-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--wmc-grad-hairline);
+}
+
+/* ---- C2: cards (the `border border-primary border-opacity-25` pattern) */
+.border.border-primary.border-opacity-25,
+.bg-dark.p-4.p-md-5.rounded.border.border-secondary,
+.bg-dark.p-4.p-lg-5.rounded {
+  background-color: var(--wmc-surface-2) !important;
+  background-image: var(--wmc-grad-surface);
+  border: 1px solid var(--wmc-border) !important;
+  border-radius: var(--wmc-radius) !important;
+  box-shadow: var(--wmc-shadow-1);
+  transition:
+    transform var(--wmc-dur) var(--wmc-ease),
+    box-shadow var(--wmc-dur) var(--wmc-ease),
+    border-color var(--wmc-dur) var(--wmc-ease);
+}
+
+.border.border-primary.border-opacity-25:hover,
+.bg-dark.p-4.p-lg-5.rounded:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--wmc-shadow-2);
+  border-color: var(--wmc-border-gold) !important;
+}
+
+/* service half-pill blocks: use surface tokens so the gradient reads */
+.service-item.service-item-left  { background: linear-gradient(to right,  var(--wmc-surface-2), var(--wmc-bg)); }
+.service-item.service-item-right { background: linear-gradient(to left,   var(--wmc-surface-2), var(--wmc-bg)); }
+@media (max-width: 767.98px) {
+  .service-item.service-item-left,
+  .service-item.service-item-right { background: linear-gradient(to bottom, var(--wmc-surface-2), var(--wmc-bg)); }
+}
+
+/* ---- C3: gold accents + section headings ----------------- */
+.title .title-left h5,
+.title .title-center h5,
+.title .title-right h5 { color: var(--wmc-gold); }
+
+.title .title-left h5::after,
+.title .title-center h5::before,
+.title .title-center h5::after,
+.title .title-right h5::before {
+  height: 1px;
+  border-bottom: 0;
+  background: var(--wmc-grad-hairline);
+}
+
+.title .title-left h1,
+.title .title-center h1,
+.title .title-right h1 {
+  border-bottom: 0;
+  position: relative;
+  padding-bottom: 14px;
+  color: var(--wmc-text-hi);
+}
+.title .title-center h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--wmc-grad-gold);
+}
+.title .title-left h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 88px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--wmc-grad-gold);
+}
+
+/* metallic gold buttons + legible ink (fixes white-on-gold) */
+.btn-primary {
+  background-image: var(--wmc-grad-gold);
+  background-color: var(--wmc-gold);
+  border: 0;
+  color: var(--wmc-gold-ink) !important;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.22);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-image: var(--wmc-grad-gold);
+  color: var(--wmc-gold-ink) !important;
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow: var(--wmc-shadow-gold);
+}
+.btn-outline-primary {
+  border-color: var(--wmc-border-gold);
+  color: var(--wmc-gold);
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-image: var(--wmc-grad-gold);
+  border-color: transparent;
+  color: var(--wmc-gold-ink) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--wmc-shadow-gold);
+}
+
+/* deepen page-header overlay into a vertical fade for text depth */
+.page-header {
+  background-image:
+    linear-gradient(180deg, rgba(11, 11, 12, 0.70), rgba(11, 11, 12, 0.90)),
+    url(../img/carousel-1.jpg);
+}
+
+/* ---- C4: fine grain to kill banding on near-black -------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* grain sits at z-index:1; navbar (z-index:9), floating buttons (99) and
+   Bootstrap modals (1055+) already render above it — nothing else to raise. */
+
+/* ---- C5: motion + focus -------------------------------- */
+.btn { transition: color var(--wmc-dur) var(--wmc-ease),
+                   background-color var(--wmc-dur) var(--wmc-ease),
+                   border-color var(--wmc-dur) var(--wmc-ease),
+                   transform var(--wmc-dur) var(--wmc-ease),
+                   box-shadow var(--wmc-dur) var(--wmc-ease); }
+
+a:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+button:focus-visible,
+.form-control:focus-visible,
+.accordion-button:focus-visible {
+  outline: 2px solid var(--wmc-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
