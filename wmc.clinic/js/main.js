@@ -70,7 +70,7 @@
     });
 
 
-    // Testimonials carousel – smooth infinite left-to-right loop
+    // Testimonials carousel – infinite loop, one card every 6s
     $(document).ready(function () {
         $(".testimonial-carousel").owlCarousel({
             loop: true,
@@ -78,14 +78,15 @@
             nav: false,
             dots: true,
             autoplay: true,
-            autoplayTimeout: 2500,
-            autoplaySpeed: 1200,
+            autoplayTimeout: 6000,
+            autoplaySpeed: 800,
             autoplayHoverPause: true,
-            smartSpeed: 1200,
+            smartSpeed: 800,
+            slideBy: 1,
             responsive: {
                 0:   { items: 1 },
                 640: { items: 2 },
-                992: { items: 2 }
+                992: { items: 3 }
             }
         });
     });
