@@ -1797,3 +1797,24 @@ body.nav-open { overflow: hidden; }
 #header-carousel .carousel-control-next { opacity: 0.75; }
 #header-carousel .carousel-control-prev:hover,
 #header-carousel .carousel-control-next:hover { opacity: 1; }
+
+
+/* ============================================================
+   CALL ICON — un-mirror the FA6 phone glyph + 5% larger
+   `fa-phone-alt` renders mirrored vs. the conventional phone
+   icon; flip it back everywhere and bump the size slightly.
+   ============================================================ */
+.fa-phone-alt,
+.fa-phone {
+  display: inline-block;
+  transform: scaleX(-1);
+  font-size: 1.05em;
+}
+
+/* lone phone quick-action in the mobile drawer (WhatsApp removed) */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse .navbar-cta .nav-quick {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
