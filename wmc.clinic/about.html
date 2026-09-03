@@ -45,13 +45,14 @@
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
                 <img src="img/wmc-logo.png" alt="Worldwide Medical Center" class="navbar-logo" /></a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto p-4 p-lg-0">
                     <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link active">About</a>
+                    <a href="about.html" class="nav-item nav-link active" aria-current="page">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>
                     <a href="doctors.html" class="nav-item nav-link">Our Doctors</a>
                     <a href="facilities.html" class="nav-item nav-link">Facilities</a>
@@ -59,8 +60,10 @@
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                     <a href="join-us.html" class="nav-item nav-link">Join as a Partner</a>
                 </div>
-                <div class="d-none d-lg-flex">
-                    <a class="btn btn-outline-primary border-2" href="book-appointment.html">Book an Appointment</a>
+                <div class="d-flex align-items-center navbar-cta">
+                    <a class="btn btn-sm-square btn-outline-primary border-2 nav-quick" href="tel:+97145707960" aria-label="Call WMC"><i class="fa fa-phone-alt"></i></a>
+                    <a class="btn btn-sm-square btn-outline-primary border-2 nav-quick" href="https://wa.me/971581332355" target="_blank" rel="noopener" aria-label="WhatsApp WMC"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-primary border-0" href="book-appointment.html"><i class="fa fa-calendar-alt me-2"></i>Book an Appointment</a>
                 </div>
             </div>
         </nav>

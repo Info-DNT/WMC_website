@@ -16,14 +16,42 @@
     new WOW().init();
 
 
-    // Sticky Navbar
+    // Sticky / condensing navbar
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 0) {
-            $('.navbar').addClass('position-fixed bg-dark shadow-sm');
+        if ($(this).scrollTop() > 40) {
+            $('.navbar').addClass('position-fixed navbar-scrolled');
         } else {
-            $('.navbar').removeClass('position-fixed bg-dark shadow-sm');
+            $('.navbar').removeClass('position-fixed navbar-scrolled');
         }
     });
+
+
+    // Mobile nav drawer: backdrop, body scroll-lock, Esc + link-tap to close
+    var navCollapse = document.getElementById('navbarCollapse');
+    if (navCollapse && window.bootstrap) {
+        var navBackdrop = document.createElement('div');
+        navBackdrop.className = 'navbar-backdrop';
+        (document.querySelector('.navbar') || document.body).appendChild(navBackdrop);
+
+        var closeNav = function () {
+            if (navCollapse.classList.contains('show')) {
+                bootstrap.Collapse.getOrCreateInstance(navCollapse).hide();
+            }
+        };
+        navCollapse.addEventListener('show.bs.collapse', function () {
+            document.body.classList.add('nav-open');
+        });
+        navCollapse.addEventListener('hidden.bs.collapse', function () {
+            document.body.classList.remove('nav-open');
+        });
+        navBackdrop.addEventListener('click', closeNav);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { closeNav(); }
+        });
+        navCollapse.querySelectorAll('.nav-link').forEach(function (link) {
+            link.addEventListener('click', closeNav);
+        });
+    }
     
     
     // Back to top & Floating WhatsApp buttons

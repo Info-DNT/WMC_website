@@ -1567,3 +1567,186 @@ button:focus-visible,
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* ============================================================
+   PLAN 1 — MOBILE HORIZONTAL-OVERFLOW SAFETY NET
+   ============================================================ */
+
+/* No element may create sideways scroll. overflow-x:clip keeps
+   position:sticky working where supported; hidden is the fallback. */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; overflow-x: clip; }
+
+/* Media and embeds never exceed their column */
+img, iframe, video, svg, canvas { max-width: 100%; }
+
+/* Let flex/grid children shrink below their intrinsic content width —
+   the most common cause of an unshrinkable, viewport-widening row. */
+.row > *,
+.d-flex > *,
+.navbar-nav,
+.list-group { min-width: 0; }
+
+/* Long words / headings wrap instead of pushing width */
+h1, h2, h3,
+.display-1, .display-4,
+.carousel-caption h1, .page-header h1, .title h1 { overflow-wrap: anywhere; }
+
+/* Very small phones: allow the no-wrap review badge to wrap and
+   trim the hero headline a touch further */
+@media (max-width: 400px) {
+  .google-review-badge { white-space: normal; }
+  .carousel-caption h1,
+  .page-header h1 { font-size: 1.35rem !important; }
+}
+
+
+/* ============================================================
+   PLAN 2 — NAVBAR POLISH (B2–B6)
+   ============================================================ */
+
+/* ---- B2: scroll / condense state ------------------------- */
+.navbar {
+  transition:
+    background-color 0.3s var(--wmc-ease),
+    padding 0.3s var(--wmc-ease),
+    box-shadow 0.3s var(--wmc-ease),
+    backdrop-filter 0.3s var(--wmc-ease);
+}
+.navbar-logo { transition: height 0.3s var(--wmc-ease); }
+
+.navbar-scrolled {
+  background-color: #0B0B0C;                       /* fallback */
+  background-color: rgba(11, 11, 12, 0.85);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  backdrop-filter: blur(12px) saturate(120%);
+  border-bottom: 1px solid var(--wmc-border-gold);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+@media (min-width: 992px) {
+  .navbar-scrolled .navbar-nav .nav-link { padding-top: 16px; padding-bottom: 16px; }
+  .navbar-scrolled .navbar-logo { height: 38px; }
+}
+
+/* ---- B3: animated gold underline (desktop) --------------- */
+@media (min-width: 992px) {
+  .navbar .navbar-nav .nav-link { position: relative; }
+  .navbar .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 26px;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--wmc-grad-gold);
+    transition: width 0.3s var(--wmc-ease), bottom 0.3s var(--wmc-ease);
+  }
+  .navbar .navbar-nav .nav-link:hover::after,
+  .navbar .navbar-nav .nav-link.active::after { width: 100%; }
+  .navbar-scrolled .navbar-nav .nav-link::after { bottom: 8px; }
+}
+
+/* mobile: gold rail on the active item instead of an underline */
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav .nav-link.active {
+    border-left: 3px solid var(--wmc-gold);
+    padding-left: 12px;
+  }
+}
+
+/* ---- B4: CTA cluster (quick actions + primary button) ---- */
+.navbar-cta { gap: 0.5rem; }
+.navbar-cta .nav-quick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-cta .nav-quick i { font-size: 0.95rem; }
+.navbar-cta .btn-primary i { pointer-events: none; }
+
+/* ---- B5: mobile slide-in drawer ------------------------- */
+.navbar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--wmc-ease);
+}
+body.nav-open .navbar-backdrop { opacity: 1; visibility: visible; }
+body.nav-open { overflow: hidden; }
+
+@media (min-width: 992px) {
+  .navbar-backdrop { display: none; }
+}
+
+@media (max-width: 991.98px) {
+  body.nav-open .navbar { z-index: 1050; }
+  /* keep the toggler tappable above the open drawer so it can close it */
+  body.nav-open .navbar-toggler { position: relative; z-index: 1060; }
+
+  .navbar .navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(84vw, 340px);
+    height: 100vh;
+    height: 100dvh;
+    padding: 88px 24px 28px;
+    background: var(--wmc-surface-1);
+    box-shadow: -24px 0 48px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.32s var(--wmc-ease);
+    overflow-y: auto;
+    display: flex !important;
+    flex-direction: column;
+    visibility: hidden;
+    z-index: 1050;
+  }
+  .navbar .navbar-collapse.show,
+  .navbar .navbar-collapse.collapsing {
+    height: 100dvh !important;
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .navbar .navbar-collapse .navbar-nav {
+    margin: 0;
+    border-top: 0;
+    width: 100%;
+  }
+  .navbar .navbar-collapse .navbar-nav .nav-link {
+    padding: 14px 4px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--wmc-border);
+  }
+
+  /* CTA cluster pinned to the bottom of the drawer */
+  .navbar .navbar-collapse .navbar-cta {
+    margin-top: auto;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 20px;
+  }
+  .navbar .navbar-collapse .navbar-cta .nav-quick {
+    flex: 1 1 0;
+    height: 46px;
+    border-radius: 10px;
+  }
+  .navbar .navbar-collapse .navbar-cta .btn-primary {
+    flex: 1 1 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+/* ---- B6: focus visibility on nav controls --------------- */
+.navbar-toggler:focus,
+.navbar-toggler:focus-visible {
+  box-shadow: none;
+  outline: 2px solid var(--wmc-gold);
+  outline-offset: 3px;
+}
