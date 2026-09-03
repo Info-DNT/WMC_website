@@ -1810,6 +1810,13 @@ body.nav-open { overflow: hidden; }
 }
 .carousel-caption p { color: var(--wmc-text-hi); }
 
+/* nudge the hero text + buttons down ~10% of the band */
+@media (min-width: 769px) {
+  #header-carousel .carousel-caption > .container {
+    transform: translateY(8vh);
+  }
+}
+
 /* make the prev / next controls easier to see */
 #header-carousel .carousel-control-prev,
 #header-carousel .carousel-control-next { opacity: 0.75; }
