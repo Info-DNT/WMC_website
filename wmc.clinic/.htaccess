@@ -1,0 +1,25 @@
+# WMC Polyclinic - Apache config (Hostinger)
+# Assumes the CONTENTS of this folder are deployed to public_html/
+# (so the live site root is https://www.wmcclinic.ae/). If the site is
+# instead served from public_html/wmc.clinic/, prefix the targets below
+# with /wmc.clinic/.
+
+RewriteEngine On
+
+# --- Legacy "clean URL" folders were removed. 301 them to the .html pages ---
+RewriteRule ^contact/?$                     /contact.html [R=301,L]
+RewriteRule ^blogs/?$                       /blogs.html [R=301,L]
+RewriteRule ^book-appointment/?$            /book-appointment.html [R=301,L]
+RewriteRule ^facilities/?$                  /facilities.html [R=301,L]
+RewriteRule ^privacy-policy/?$              /privacy-policy.html [R=301,L]
+RewriteRule ^doctors/?$                     /doctors.html [R=301,L]
+RewriteRule ^doctors/dr-naing-tun-oo/?$     /doctors/dr-naing-tun-oo.html [R=301,L]
+
+# /services/<name>  ->  /<name>.html
+RewriteRule ^services/(aesthetic-treatments|general-practitioner|laboratory|laser-hair-removal|pediatrics|preventive-healthcare|urology)/?$   /$1.html [R=301,L]
+RewriteRule ^services/?$                    /service.html [R=301,L]
+
+# --- Canonical host: force https + www ---
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.wmcclinic.ae%{REQUEST_URI} [R=301,L]
