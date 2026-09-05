@@ -120,14 +120,8 @@
                     <button class="btn btn-outline-primary btn-filter px-3 py-2" onclick="filterDoctors('urology', this)">
                         Urology
                     </button>
-                    <button class="btn btn-outline-primary btn-filter px-3 py-2" onclick="filterDoctors('pediatrics', this)">
-                        Pediatrics
-                    </button>
                     <button class="btn btn-outline-primary btn-filter px-3 py-2" onclick="filterDoctors('aesthetic', this)">
                         Aesthetic Clinic
-                    </button>
-                    <button class="btn btn-outline-primary btn-filter px-3 py-2" onclick="filterDoctors('laboratory', this)">
-                        Laboratory & Diagnostics
                     </button>
                 </div>
             </div>
@@ -143,11 +137,11 @@
                                 <img src="img/dr-naing.jpg" alt="Dr. Naing Tun Oo - General Practitioner" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover; background-color: #1b1b1b;">
                             </div>
                             <h3 class="text-white h4 mb-1">Dr. Naing Tun Oo</h3>
-                            <p class="text-primary fw-bold mb-2">Specialist General Practitioner</p>
+                            <p class="text-primary fw-bold mb-2">General Practitioner</p>
                             <div class="bg-secondary p-3 rounded mb-3 text-start">
                                 <p class="text-light fs-6 mb-1"><i class="fa fa-graduation-cap text-primary me-2"></i><strong>Qualifications:</strong> M.B.B.S</p>
                                 <p class="text-light fs-6 mb-1"><i class="fa fa-briefcase text-primary me-2"></i><strong>Experience:</strong> 9 Years Clinical Practice</p>
-                                <p class="text-light fs-6 mb-1"><i class="fa fa-language text-primary me-2"></i><strong>Languages:</strong> Burmese, Chinese</p>
+                                <p class="text-light fs-6 mb-1"><i class="fa fa-language text-primary me-2"></i><strong>Languages:</strong> Burmese, Chinese, English</p>
                                 <p class="text-light fs-6 mb-0"><i class="fa fa-stethoscope text-primary me-2"></i><strong>Focus:</strong> Primary Care, Health Check-ups, Chronic Disease Management</p>
                             </div>
                         </div>
@@ -162,15 +156,15 @@
                     </div>
                 </div>
 
-                <!-- 2. Urology Specialist Card -->
+                <!-- 2. Urology Consultant Card -->
                 <div class="col-lg-4 col-md-6 doctor-card-item wow fadeInUp" data-category="urology" data-wow-delay="0.2s">
                     <div class="bg-dark p-4 rounded text-center border border-primary border-opacity-25 h-100 d-flex flex-column justify-content-between shadow">
                         <div>
                             <div class="mb-3">
-                                <img src="img/service-2.jpg" alt="Specialist Urologist" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover;">
+                                <img src="img/service-2.jpg" alt="Urologist" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover;">
                             </div>
-                            <h3 class="text-white h4 mb-1">Dr. Urology Specialist</h3>
-                            <p class="text-primary fw-bold mb-2">Specialist Urologist</p>
+                            <h3 class="text-white h4 mb-1">Dr. Urology Consultant</h3>
+                            <p class="text-primary fw-bold mb-2">Urology Consultant</p>
                             <div class="bg-secondary p-3 rounded mb-3 text-start">
                                 <p class="text-light fs-6 mb-1"><i class="fa fa-graduation-cap text-primary me-2"></i><strong>Qualifications:</strong> MBBS, MS (Urology), FEBU, DHA Licensed</p>
                                 <p class="text-light fs-6 mb-1"><i class="fa fa-briefcase text-primary me-2"></i><strong>Experience:</strong> 15+ Years Clinical Urology</p>
@@ -188,32 +182,6 @@
                     </div>
                 </div>
 
-                <!-- 3. Pediatric Specialist Card -->
-                <div class="col-lg-4 col-md-6 doctor-card-item wow fadeInUp" data-category="pediatrics" data-wow-delay="0.3s">
-                    <div class="bg-dark p-4 rounded text-center border border-primary border-opacity-25 h-100 d-flex flex-column justify-content-between shadow">
-                        <div>
-                            <div class="mb-3">
-                                <img src="img/wmc-hero-2.jpg" alt="Consultant Pediatrician" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover;">
-                            </div>
-                            <h3 class="text-white h4 mb-1">Dr. Pediatric Specialist</h3>
-                            <p class="text-primary fw-bold mb-2">Consultant Pediatrician</p>
-                            <div class="bg-secondary p-3 rounded mb-3 text-start">
-                                <p class="text-light fs-6 mb-1"><i class="fa fa-graduation-cap text-primary me-2"></i><strong>Qualifications:</strong> MBBS, MD (Pediatrics), DHA Licensed</p>
-                                <p class="text-light fs-6 mb-1"><i class="fa fa-briefcase text-primary me-2"></i><strong>Experience:</strong> 14+ Years Child Healthcare</p>
-                                <p class="text-light fs-6 mb-0"><i class="fa fa-stethoscope text-primary me-2"></i><strong>Focus:</strong> Growth & Development, Childhood Illnesses, Preventive Care</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-2 mt-2">
-                            <button type="button" class="btn btn-outline-primary border-2 btn-sm w-50 py-2" data-bs-toggle="modal" data-bs-target="#docModal3">
-                                View Profile
-                            </button>
-                            <a href="#appointment-section" onclick="selectDoctorInForm('Pediatrics')" class="btn btn-primary btn-sm w-50 py-2 fw-bold" style="color:#000;">
-                                Book Appointment
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- 4. Aesthetic Practitioner Card -->
                 <div class="col-lg-4 col-md-6 doctor-card-item wow fadeInUp" data-category="aesthetic" data-wow-delay="0.4s">
                     <div class="bg-dark p-4 rounded text-center border border-primary border-opacity-25 h-100 d-flex flex-column justify-content-between shadow">
@@ -221,7 +189,7 @@
                             <div class="mb-3">
                                 <img src="img/service-1.jpg" alt="Aesthetic Practitioner" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover;">
                             </div>
-                            <h3 class="text-white h4 mb-1">Dr. Aesthetic Specialist</h3>
+                            <h3 class="text-white h4 mb-1">Dr. Aesthetic Consultant</h3>
                             <p class="text-primary fw-bold mb-2">Aesthetic Medical Practitioner</p>
                             <div class="bg-secondary p-3 rounded mb-3 text-start">
                                 <p class="text-light fs-6 mb-1"><i class="fa fa-graduation-cap text-primary me-2"></i><strong>Qualifications:</strong> MBBS, Dip. Aesthetic Medicine, DHA Licensed</p>
@@ -241,31 +209,6 @@
                 </div>
 
                 <!-- 5. Clinical Pathologist / Lab Director Card -->
-                <div class="col-lg-4 col-md-6 doctor-card-item wow fadeInUp" data-category="laboratory" data-wow-delay="0.5s">
-                    <div class="bg-dark p-4 rounded text-center border border-primary border-opacity-25 h-100 d-flex flex-column justify-content-between shadow">
-                        <div>
-                            <div class="mb-3">
-                                <img src="img/service-2.jpg" alt="Clinical Pathologist" class="img-fluid rounded-circle border border-primary border-2" style="width: 140px; height: 140px; object-fit: cover;">
-                            </div>
-                            <h3 class="text-white h4 mb-1">Dr. Clinical Pathologist</h3>
-                            <p class="text-primary fw-bold mb-2">Laboratory & Diagnostic Director</p>
-                            <div class="bg-secondary p-3 rounded mb-3 text-start">
-                                <p class="text-light fs-6 mb-1"><i class="fa fa-graduation-cap text-primary me-2"></i><strong>Qualifications:</strong> MD (Pathology), DHA Licensed Specialist</p>
-                                <p class="text-light fs-6 mb-1"><i class="fa fa-briefcase text-primary me-2"></i><strong>Experience:</strong> 16+ Years Diagnostic Medicine</p>
-                                <p class="text-light fs-6 mb-0"><i class="fa fa-stethoscope text-primary me-2"></i><strong>Focus:</strong> Blood Panels, Hormone Profiles, Diagnostic Oversight</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-2 mt-2">
-                            <button type="button" class="btn btn-outline-primary border-2 btn-sm w-50 py-2" data-bs-toggle="modal" data-bs-target="#docModal5">
-                                View Profile
-                            </button>
-                            <a href="#appointment-section" onclick="selectDoctorInForm('General Practitioner (GP)')" class="btn btn-primary btn-sm w-50 py-2 fw-bold" style="color:#000;">
-                                Book Appointment
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -393,20 +336,6 @@
     <!-- SECTION 3: FAQS END -->
 
 
-    <!-- SECTION 4: INTERNAL LINKS NAVIGATION START -->
-    <div class="container-fluid py-4 bg-secondary border-top border-secondary">
-        <div class="container text-center py-2">
-            <h5 class="text-white h6 mb-3 text-uppercase tracking-wide">Explore Department Specialties</h5>
-            <div class="d-flex flex-wrap justify-content-center gap-2">
-                <a href="general-practitioner.html" class="btn btn-outline-primary btn-sm border-2">General Practitioner</a>
-                <a href="urology.html" class="btn btn-outline-primary btn-sm border-2">Urology Services</a>
-                <a href="pediatrics.html" class="btn btn-outline-primary btn-sm border-2">Pediatric Clinic</a>
-                <a href="aesthetic-treatments.html" class="btn btn-outline-primary btn-sm border-2">Aesthetic Clinic</a>
-                <a href="contact.html" class="btn btn-outline-primary btn-sm border-2">Contact WMC</a>
-            </div>
-        </div>
-    </div>
-    <!-- SECTION 4: INTERNAL LINKS END -->
 
 
     <!-- SECTION 5: VERIFIED LOCATION & HOURS START -->
@@ -479,7 +408,6 @@
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                         <div class="map-overlay-badge rounded-3 p-2 px-3 shadow">
-                            <i class="fa fa-parking text-primary me-2"></i>Ample Free Patient Parking Available
                         </div>
                     </div>
                 </div>
@@ -588,7 +516,7 @@
                     <p class="text-light mb-2"><strong>Specialty:</strong> General Practice / Primary Care</p>
                     <p class="text-light mb-2"><strong>Qualifications:</strong> M.B.B.S</p>
                     <p class="text-light mb-2"><strong>Experience:</strong> 9 years of clinical experience in comprehensive primary care.</p>
-                    <p class="text-light mb-2"><strong>Languages Spoken:</strong> Burmese, Chinese</p>
+                    <p class="text-light mb-2"><strong>Languages Spoken:</strong> Burmese, Chinese, English</p>
                     <p class="text-light mb-3"><strong>Scope of Practice:</strong> Health check-ups, chronic disease management, vaccinations, acute illness care, minor surgical procedures, preventive care, and family health wellness.</p>
                     <div class="d-flex gap-2">
                         <a href="doctors/dr-naing-tun-oo.html" class="btn btn-outline-primary w-50 border-2">Full Profile Page</a>
@@ -606,49 +534,28 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-white border border-primary">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Urology Specialist</h5>
+                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Urology Consultant</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
-                    <p class="text-light mb-2"><strong>Specialty:</strong> Specialist Urologist</p>
+                    <p class="text-light mb-2"><strong>Specialty:</strong> Urology Consultant</p>
                     <p class="text-light mb-2"><strong>Qualifications:</strong> MBBS, MS (Urology), Fellow of European Board of Urology (FEBU), DHA Licensed</p>
                     <p class="text-light mb-2"><strong>Experience:</strong> Over 15 years in clinical urology and male reproductive healthcare.</p>
                     <p class="text-light mb-3"><strong>Scope of Practice:</strong> Kidney stone assessment, urinary tract symptom management, prostate health screening, and men's health consultations.</p>
                     <a href="#appointment-section" data-bs-dismiss="modal" onclick="selectDoctorInForm('Urology Services')" class="btn btn-primary w-100 fw-bold" style="color:#000;">
-                        Book Consultation With Specialist
+                        Book Consultation With Urology Consultant
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal 3: Pediatrician -->
-    <div class="modal fade" id="docModal3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border border-primary">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Pediatric Specialist</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start">
-                    <p class="text-light mb-2"><strong>Specialty:</strong> Consultant Pediatrician</p>
-                    <p class="text-light mb-2"><strong>Qualifications:</strong> MBBS, MD (Pediatrics), DHA Licensed Specialist</p>
-                    <p class="text-light mb-2"><strong>Experience:</strong> Over 14 years in pediatric healthcare and infant development.</p>
-                    <p class="text-light mb-3"><strong>Scope of Practice:</strong> Routine growth monitoring, child development assessments, childhood illnesses, nutrition guidance, and vaccination consultations.</p>
-                    <a href="#appointment-section" data-bs-dismiss="modal" onclick="selectDoctorInForm('Pediatrics')" class="btn btn-primary w-100 fw-bold" style="color:#000;">
-                        Book Pediatric Appointment
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 4: Aesthetic Specialist -->
+    <!-- Modal 4: Aesthetic Consultant -->
     <div class="modal fade" id="docModal4" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-white border border-primary">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Aesthetic Specialist</h5>
+                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Aesthetic Consultant</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
@@ -664,26 +571,6 @@
         </div>
     </div>
 
-    <!-- Modal 5: Pathologist -->
-    <div class="modal fade" id="docModal5" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border border-primary">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-primary"><i class="fa fa-user-md me-2"></i>Dr. Clinical Pathologist</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start">
-                    <p class="text-light mb-2"><strong>Specialty:</strong> Laboratory & Diagnostic Director</p>
-                    <p class="text-light mb-2"><strong>Qualifications:</strong> MD (Pathology), DHA Licensed Specialist</p>
-                    <p class="text-light mb-2"><strong>Experience:</strong> Over 16 years of diagnostic pathology and clinical laboratory leadership.</p>
-                    <p class="text-light mb-3"><strong>Scope of Practice:</strong> Laboratory test oversight, comprehensive blood panels, diagnostic interpretations, and quality control.</p>
-                    <a href="#appointment-section" data-bs-dismiss="modal" onclick="selectDoctorInForm('General Practitioner (GP)')" class="btn btn-primary w-100 fw-bold" style="color:#000;">
-                        Book Diagnostic Test
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- DOCTOR MODALS END -->
 
 
