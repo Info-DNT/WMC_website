@@ -1986,6 +1986,7 @@ body.nav-open { overflow: hidden; }
   transform: scale(1.08);
 }
 .package-carousel .owl-dots { margin-top: 22px; text-align: center; }
+.package-carousel .owl-dots .owl-dot { display: inline-block; }
 .package-carousel .owl-dots .owl-dot span {
   width: 9px; height: 9px; margin: 0 4px; border-radius: 50%;
   background: var(--wmc-surface-3); display: inline-block; transition: background var(--wmc-dur) var(--wmc-ease);
