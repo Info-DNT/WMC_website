@@ -312,7 +312,7 @@
 .page-header {
     padding-top: 160px;
     padding-bottom: 60px;
-    background-color: #0B0B0C;
+    background-color: var(--wmc-bg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1344,15 +1344,17 @@ section p.text-muted {
 
 /* ---- C1: design tokens ------------------------------------ */
 :root {
-  /* surfaces: page is darkest, cards lift above it */
-  --wmc-bg:         #0B0B0C;
-  --wmc-surface-1:  #141417;
-  --wmc-surface-2:  #1C1C21;
-  --wmc-surface-3:  #26262D;
+  /* surfaces: page is darkest, cards lift above it.
+     Widened + warmed (gold-tinted) vs. the original neutral/tight scale
+     so sections and cards separate visibly, not just on paper. */
+  --wmc-bg:         #14120F;
+  --wmc-surface-1:  #1F1B14;
+  --wmc-surface-2:  #2B2419;
+  --wmc-surface-3:  #3B3020;
 
   /* borders */
-  --wmc-border:        rgba(255, 255, 255, 0.07);
-  --wmc-border-strong: rgba(255, 255, 255, 0.12);
+  --wmc-border:        rgba(255, 255, 255, 0.09);
+  --wmc-border-strong: rgba(255, 255, 255, 0.16);
   --wmc-border-gold:   rgba(212, 175, 55, 0.30);
 
   /* text */
@@ -1373,9 +1375,9 @@ section p.text-muted {
   --wmc-grad-hairline: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45), transparent);
   --wmc-glow:          radial-gradient(1200px 620px at 50% -12%, rgba(212, 175, 55, 0.07), transparent 62%);
 
-  /* elevation */
-  --wmc-shadow-1: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 6px 18px rgba(0, 0, 0, 0.45);
-  --wmc-shadow-2: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 16px 40px rgba(0, 0, 0, 0.55);
+  /* elevation — bumped so cards visibly lift instead of blending in */
+  --wmc-shadow-1: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 26px rgba(0, 0, 0, 0.55);
+  --wmc-shadow-2: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 22px 48px rgba(0, 0, 0, 0.68);
   --wmc-shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.28);
 
   /* shape + motion */
@@ -1427,7 +1429,7 @@ section p.text-muted { color: var(--wmc-text-lo) !important; }
 .bg-dark.p-4.p-lg-5.rounded {
   background-color: var(--wmc-surface-2) !important;
   background-image: var(--wmc-grad-surface);
-  border: 1px solid var(--wmc-border) !important;
+  border: 1px solid var(--wmc-border-strong) !important;
   border-radius: var(--wmc-radius) !important;
   box-shadow: var(--wmc-shadow-1);
   transition:
@@ -1634,8 +1636,8 @@ h1, h2, h3,
 .navbar-logo { transition: height 0.3s var(--wmc-ease); }
 
 .navbar-scrolled {
-  background-color: #0B0B0C;                       /* fallback */
-  background-color: rgba(11, 11, 12, 0.85);
+  background-color: var(--wmc-bg);                  /* fallback */
+  background-color: rgba(20, 18, 15, 0.85);
   -webkit-backdrop-filter: blur(12px) saturate(120%);
   backdrop-filter: blur(12px) saturate(120%);
   border-bottom: 1px solid var(--wmc-border-gold);
@@ -1775,15 +1777,19 @@ body.nav-open { overflow: hidden; }
    ============================================================ */
 
 /* vivid in the middle, darkened only under the navbar and behind the
-   headline / buttons where the text sits */
+   headline / buttons where the text sits. A vignette is layered on top
+   so the text column stays legible even over a bright photo (e.g. the
+   reception slide) without darkening the rest of the image. */
 .carousel-caption {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.22) 30%,
-    rgba(0, 0, 0, 0.30) 55%,
-    rgba(0, 0, 0, 0.82) 100%
-  );
+  background:
+    radial-gradient(60% 55% at 50% 62%, rgba(0, 0, 0, 0.42), transparent 72%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.22) 30%,
+      rgba(0, 0, 0, 0.30) 55%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
 }
 
 /* mild lift to counteract what's left of the scrim */
@@ -1802,11 +1808,15 @@ body.nav-open { overflow: hidden; }
   }
 }
 
-/* keep caption text readable over the brighter middle band */
+/* keep caption text readable regardless of what's behind it —
+   layered shadow: a tight dark edge + a soft wide glow */
 .carousel-caption h1,
 .carousel-caption h4,
 .carousel-caption p {
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 4px 16px rgba(0, 0, 0, 0.7),
+    0 0 32px rgba(0, 0, 0, 0.5);
 }
 .carousel-caption p { color: var(--wmc-text-hi); }
 
