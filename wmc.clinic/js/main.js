@@ -91,6 +91,32 @@
         });
     });
 
-    
+
+    // Health Packages carousel – infinite loop, left-to-right, with manual prev/next
+    $(document).ready(function () {
+        $(".package-carousel").owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            navText: [
+                '<i class="fa fa-chevron-left"></i>',
+                '<i class="fa fa-chevron-right"></i>'
+            ],
+            autoplay: true,
+            autoplayTimeout: 3500,
+            autoplaySpeed: 800,
+            autoplayHoverPause: true,
+            smartSpeed: 800,
+            slideBy: 1,
+            responsive: {
+                0:   { items: 1 },
+                640: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+    });
+
+
 })(jQuery);
 

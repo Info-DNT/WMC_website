@@ -1936,3 +1936,63 @@ body.nav-open { overflow: hidden; }
   .testimonial-card { min-height: 320px; }
   .testimonial-card .review-text { font-size: 0.9rem; }
 }
+
+
+/* ============================================================
+   HEALTH PACKAGES — infinite carousel, image cards + Book Now
+   ============================================================ */
+.package-carousel {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.package-carousel .owl-stage-outer { padding: 6px 0 10px; }
+.package-card { padding: 0 6px; }
+
+/* prev/next arrow buttons (no default skin is loaded, so these are
+   built from scratch to match the site's gold pill language) */
+.package-carousel .owl-nav {
+  position: absolute;
+  top: 42%;
+  left: -6px;
+  right: -6px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  margin: 0;
+}
+.package-carousel .owl-nav button.owl-prev,
+.package-carousel .owl-nav button.owl-next {
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--wmc-surface-2);
+  border: 1px solid var(--wmc-border-gold);
+  color: var(--wmc-gold);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--wmc-dur) var(--wmc-ease), color var(--wmc-dur) var(--wmc-ease), transform var(--wmc-dur) var(--wmc-ease);
+}
+.package-carousel .owl-nav button.owl-prev { margin-left: -22px; }
+.package-carousel .owl-nav button.owl-next { margin-right: -22px; }
+.package-carousel .owl-nav button.owl-prev:hover,
+.package-carousel .owl-nav button.owl-next:hover {
+  background: var(--wmc-grad-gold);
+  color: var(--wmc-gold-ink);
+  transform: scale(1.08);
+}
+.package-carousel .owl-dots { margin-top: 22px; text-align: center; }
+.package-carousel .owl-dots .owl-dot span {
+  width: 9px; height: 9px; margin: 0 4px; border-radius: 50%;
+  background: var(--wmc-surface-3); display: inline-block; transition: background var(--wmc-dur) var(--wmc-ease);
+}
+.package-carousel .owl-dots .owl-dot.active span { background: var(--wmc-gold); }
+
+@media (max-width: 575.98px) {
+  .package-carousel .owl-nav button.owl-prev { margin-left: -6px; }
+  .package-carousel .owl-nav button.owl-next { margin-right: -6px; }
+}
